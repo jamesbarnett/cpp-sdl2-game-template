@@ -8,13 +8,10 @@ class Game
 {
 private:
   SDL_Window* mainWindow_;
-  bool isRunning_ = true;
+  bool isRunning_;
   
 public:
-  Game() 
-  {
-
-  }
+  Game() : mainWindow_(0), isRunning_(true) { }
 
   ~Game()
   {
@@ -33,7 +30,7 @@ public:
     {
       cout << "SDL_CreateWindow error: " << SDL_GetError() << endl;
       SDL_Quit();
-      return 1;
+      return false;
     }
   
     return true;
@@ -41,15 +38,14 @@ public:
 
   bool run()
   {
+    // Game loop inspired by http://gafferongames.com/game-physics/fix-your-timestep/
     long timeDelta = 1000 / 60L;
     long timeAccumulator = 0L;
-    long timeForFrame;
     long startTime = SDL_GetTicks();
     SDL_Event event;
 
     while (isRunning_)
     {
-      timeForFrame = 0L;
       startTime = SDL_GetTicks();
       
       while (timeAccumulator >= timeDelta)

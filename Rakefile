@@ -39,6 +39,7 @@ task :run do
 end
 
 task :rebuild_and_run do
+  desc "Rebuilds everything and runs the executable"
   Rake::Task["rebuild"].execute
   Rake::Task["run"].execute
 end
