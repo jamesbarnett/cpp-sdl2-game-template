@@ -2,21 +2,17 @@ require 'rake'
 
 task :cmake do
   desc "Runs the cmake command"
+  Dir.mkdir "build" if !File.exists? "build"
   Dir.chdir "build" do
     puts `cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug ../`
   end
-
-  Dir.chdir ".."
 end
 
 task :make do
   desc "Runs the make command after cmake is run"
-  Dir.chdir "build" do
-    puts `make`
-  end
-
-  Dir.chdir ".."
+  make
 end
+
 
 task :clean do
   desc "Removes the build directory"
@@ -26,7 +22,7 @@ end
 
 task :build do
   desc "Builds everything"
-  Dir.mkdir "build" if !File.exists "build"
+  Dir.mkdir "build" if !File.exists? "build"
   Rake::Task["cmake"].execute
   Rake::Task["make"].execute
 end
@@ -37,3 +33,27 @@ task :rebuild do
   Rake::Task["cmake"].execute
   Rake::Task["make"].execute
 end
+
+task :run do
+  puts `./build/sdl2-test`
+end
+
+task :rebuild_and_run do
+  Rake::Task["rebuild"].execute
+  Rake::Task["run"].execute
+end
+
+def cmake
+  puts "calling the cmake command"
+  Dir.mkdir "build" if !File.exists? "build"
+  Dir.chdir "build" do
+  end
+end
+
+def make
+  puts "calling the make command"
+  Dir.chdir "build" do
+    puts `make`
+  end
+end
+
