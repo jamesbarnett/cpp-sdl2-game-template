@@ -20,8 +20,22 @@ elseif (${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC")
 endif()
 
 find_package(SDL2 REQUIRED)
-include_directories(%{SDL2_INCLUDE_DIR})
+find_package(SDL2_image REQUIRED)
+find_package(SDL2_ttf REQUIRED)
+find_package(SDL2_mixer REQUIRED)
+find_package(Boost 1.57.0 COMPONENTS sytem filesystem REQUIRED)
+include_directories(${SDL2_INCLUDE_DIR}
+  ${SDL2_IMAGE_INCLUDE_DIR}
+  ${SDL2_TTF_INCLUDE_DIR}
+  ${SDL2_MIXER_INCLUDE_DIR})
 
 add_executable(sdl2-test src/main.cpp)
-target_link_libraries(sdl2-test ${SDL2_LIBRARY})
+target_link_libraries(sdl2-test
+  ${SDL2_LIBRARY}
+  ${SDL2_IMAGE_LIBRARY}
+  ${SDL2_TTF_LIBRARY}
+  ${SDL2_MIXER_LIBRARY}
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_FILESYSTEM_LIBRARY})
+
 install(TARGETS sdl2-test RUNTIME DESTINATION ${BIN_DIR})
