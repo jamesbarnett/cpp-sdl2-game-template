@@ -1,18 +1,3 @@
-Skip to content
- This repository
-Explore
-Gist
-Blog
-Help
-Jim Barnett jamesbarnett
- 
-18  Watch 
-  Star 74
- Fork 30Twinklebear/TwinklebearDev-Lessons
- branch: master  TwinklebearDev-Lessons/cmake/FindSDL2_ttf.cmake
-Will UsherTwinklebear 20 hours ago Update CMake files and SDL2 lib finders
-1 contributor
-158 lines (150 sloc)  5.956 kb RawBlameHistory   
 # Locate SDL2_ttf library
 # This module defines
 # SDL2_TTF_LIBRARY, the name of the library to link against
