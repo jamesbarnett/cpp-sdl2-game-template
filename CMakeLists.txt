@@ -29,7 +29,8 @@ include_directories(${SDL2_INCLUDE_DIR}
   ${SDL2_TTF_INCLUDE_DIR}
   ${SDL2_MIXER_INCLUDE_DIR})
 
-add_executable(sdl2-test src/main.cpp)
+add_executable(sdl2-test src/main.cpp
+  src/scene.cpp)
 target_link_libraries(sdl2-test
   ${SDL2_LIBRARY}
   ${SDL2_IMAGE_LIBRARY}
